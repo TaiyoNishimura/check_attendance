@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>CheckAttendance</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <header>
+      <div class="header-left">
+        <%=link_to("出席チェッカー","/")%>
+      </div>
+      <div class="header-right">
+        <%= link_to("講義を追加する","/set")%>
+      </div>
+    </header>
+    <%= yield %>
+  </body>
+</html>

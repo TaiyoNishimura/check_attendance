@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  day_of_the_week: 1
+  period: 1
+
+two:
+  name: MyString
+  day_of_the_week: 1
+  period: 1

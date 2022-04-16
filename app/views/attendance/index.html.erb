@@ -1,0 +1,52 @@
+<div class= "main index">
+  <div class="container">
+    <h1>Attendance#index</h1>
+    <table border="0">
+      <thead>
+        <tr>
+          <th>授業名</th>
+          <th>時限</th>
+          <% index = 1 %>
+          <% while index <= 15 %>
+          <th><%= index %></th>
+          <% index += 1 %>
+          <% end %>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @subjects.each do |subject| %>
+          <tr>
+            <td><%= subject.name %></td>
+            <td><%= subject.return_day_of_the_week %><%= subject.period %></td>
+            <% @attendances = subject.return_attendances %>
+            <% @attendances.each do |attendance| %>
+              <% if attendance.date > Date.current%>
+                <td class="attendance yet">
+                  <%= l attendance.date, format: :short %>
+                </td>
+              <% elsif attendance.date <= Date.current && attendance.clear == 0 %>
+                <td class="attendance-not">
+                  <%= link_to(
+                    "#{l attendance.date, format: :short}",
+                    "/attendance/#{attendance.id}/clear",
+                    {method: "post",class: "not"},
+                    )%> 
+                </td>
+              <% elsif attendance.date <= Date.current && attendance.clear == 1 %>
+                <td class="attendance already">
+                  <%= link_to(
+                    "#{l attendance.date, format: :short}",
+                    "/attendance/#{attendance.id}/cancel",
+                    {method: "post",class: "already"},
+                    )%>
+                </td>
+              <% end %>
+            <% end %>
+            <td><%= link_to("削除","/subjects/#{subject.id}/destroy",{method: "post"})%></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
